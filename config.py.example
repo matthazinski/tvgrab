@@ -1,0 +1,47 @@
+#!/usr/bin/env python2
+
+# torrent_dir is where torrents to be downloaded are stored on the remote 
+# machine. They will be downloaded locally if they are in the trackers list.
+torrent_dir = '/srv/torrents/down/unsorted'
+
+# done_dir is the directory on the remote host where torrents should be moved
+# upon downloading to the local host.
+done_dir = '/srv/torrents/down/btn/tv-done'
+
+# local_dl_dir specifies the directory on the local host in which to save 
+# downloaded torrent files
+local_dl_dir = '/export/pub/tv/.unwatched'
+
+# trackers is a whitelist of trackers to filter on. If an item is 
+# completely downloaded and has a tracker in trackers, it will be
+# copied locally
+trackers = ['http://tracker.example.com:34000']
+
+# xbmc_creds is a dict of user, pass, host, and port for updating and cleaning
+# the XBMC library via its JSONRPC API
+xbmc_creds = {'user': 'xbmc', 'pass': 'xbmc', 'host': 'xbmc.example.com', 'port': 80}
+xbmc_clean = True
+xbmc_update = True
+
+# lock_file is used to prevent the program from running multiple times
+lock_file = '/home/matt/.config/mhazinsk/tvget.lock'
+
+# rsync_creds are used to get data from the remote host. 'path' should 
+# correspond to the torrent_dir.
+rsync_creds = {'user':'matt', 'pass':'hunter2', 'host':'seedbox.example.com', 'path':'torrent'}
+
+# transmission_creds is used to connect to the transmission RPC API
+transmission_creds = {'user':'admin', 'pass':'hunter2', 'host':'seedbox.example.com', 'port':9091}
+
+# if aamnotifs_enable is true, then the rabbitmq_creds will be used to send 
+# notifications of completed downloads to a given rabbitmq  exchange
+rabbitmq_creds = {'user':'matt', 'pass':'hunter2', 'host':'rabbitmq.example.com', 'port':5672, 'queue':'torrents', 'vhost':'notifs', 'ssl':False}
+aamnotifs_enable = True
+
+# series is a list of dicts used to determine where to place files based on their naming scheme.
+# note that this is case-insensitive.
+# "seasons" determines whether it will attempt to sort it based on the season.
+series = [
+    {'prefix': 'Queen.of.Jordan', 'dest': '/export/pub/tv/Queen of Jordan', 'seasons': True}]
+
+
