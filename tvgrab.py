@@ -44,7 +44,7 @@ def organize_shows(filename):
         if filename.lower().startswith(s['prefix'].lower()):
 
             if not os.path.exists(s['dest']):
-                os.makedirs(directory)
+                os.makedirs(s['dest'])
 
             # Place it in the correct season folder
             if s['seasons']:
