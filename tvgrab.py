@@ -20,6 +20,8 @@ def dl_and_move(torrent):
     
     creds = config.rsync_creds
 
+    status = 0
+
     for f in file_list:
         cmd = 'rsync -avpPr --password-file=$HOME/.config/mhazinsk/rsync-pass.txt rsync://{0}@{1}/{2}/"{3}" {4}'.format(creds['user'], creds['host'], creds['path'], f, config.local_dl_dir)
 
