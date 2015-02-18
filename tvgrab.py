@@ -22,7 +22,11 @@ def dl_and_move(torrent):
 
     for f in file_list:
         cmd = 'rsync -avpPr --password-file=$HOME/.config/mhazinsk/rsync-pass.txt rsync://{0}@{1}/{2}/"{3}" {4}'.format(creds['user'], creds['host'], creds['path'], f, config.local_dl_dir)
-        status = os.system(cmd)
+
+        if not os.path.exists(config.local_dl_dir):
+            os.makedirs(config.local_dl_dir)
+
+        status = status + os.system(cmd)
         
     if status == 0:
         t.move_data(config.done_dir)
